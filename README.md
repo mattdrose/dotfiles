@@ -79,6 +79,14 @@ When setting up a new Mac, you may want to install some common [Homebrew](http:/
 ./brew.sh
 ```
 
+### Install Common NPM Packages
+
+When setting up a new Mac, you may want to install some common [NPM](https://www.npmjs.com/) packages for front-end developers. If you already setup using homebrew, you should have [NVM](https://github.com/creationix/nvm).
+
+```bash
+./npm.sh
+```
+
 ## Feedback
 
 Suggestions/improvements
