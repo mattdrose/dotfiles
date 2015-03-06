@@ -5,6 +5,7 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
+alias f='open -a Finder ./' # Opens current directory in Finder
 
 # Shortcuts
 alias d="cd ~/Documents/Dropbox"
