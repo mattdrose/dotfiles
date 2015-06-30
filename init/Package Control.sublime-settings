@@ -1,0 +1,33 @@
+{
+	"auto_upgrade_last_run": null,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"AdvancedNewFile",
+		"Alignment",
+		"ApacheConf.tmLanguage",
+		"ASCII Decorator",
+		"BracketHighlighter",
+		"CoffeeScript",
+		"Color Highlighter",
+		"CSScomb",
+		"EditorConfig",
+		"Emmet",
+		"Expand Selection to Quotes",
+		"Handlebars",
+		"HTML Underscore Syntax",
+		"Jasmine JS",
+		"JavaScriptNext - ES6 Syntax",
+		"LESS",
+		"Minifier",
+		"Package Control",
+		"Pretty JSON",
+		"Sass",
+		"SFTP",
+		"SublimeLinter",
+		"Theme - Soda",
+		"Twig"
+	]
+}
