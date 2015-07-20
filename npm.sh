@@ -17,8 +17,11 @@ cp $(brew --prefix nvm)/nvm-exec ~/.nvm/
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-#Install latest
-nvm install
+#Install 0.10.40
+nvm install 0.10.40
+
+#Point local bin node to nvm install
+ln -s /usr/local/opt/nvm/v0.10.40/bin/node /usr/local/bin/node
 
 # Install Grunt CLI
 npm install -g grunt-cli
