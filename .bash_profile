@@ -1,10 +1,6 @@
 # Add common locations to the `$PATH`
 export PATH="/usr/local:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 
-# Source NVM
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.profile can be used for profile specific bash commands.
