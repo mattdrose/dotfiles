@@ -492,6 +492,8 @@
 	push1 = "!git push origin $(git branch-name)"
 	pull1 = "!git pull origin $(git branch-name)"
 
+	# Do a force push of current branch
+	pushf = "!git push -f origin $(git branch-name) --force-with-lease"
 
 	##
 	# Reset & Undo
@@ -556,7 +558,7 @@
 	# This enables a quick way to add all new and modified files to the index,
 	# while cleaning the index from the files removed from the working tree;
 	# this cleaning will facilite a rebase, because there won't be any conlfict
-	# due to an "unclean" working directory (not in sync with the index).
+	# due to an "unclean" working directory (not in sync with the index).asdf
 	# The unwip will restore the deleted files to the working tree.
 	wip = !"git add --all; git ls-files --deleted -z | xargs -0 git rm; git commit --message=wip"
 	unwip = !"git log -n 1 | grep -q -c wip && git reset HEAD~1"
