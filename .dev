@@ -1,0 +1,3 @@
+# Bundle Exec
+alias be="bundle exec"
+alias ber="be rails"
