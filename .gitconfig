@@ -55,6 +55,9 @@
 	# branch and only list branches whose tips are not reachable from the specified commit (HEAD if not specified).
 	bnm = branch --no-merged
 
+	# branch and checkout the newly created branch
+	bo = checkout -b
+
 	### commit ###
 
 	# commit - amend the tip of the current branch rather than creating a new commit.
