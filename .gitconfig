@@ -170,7 +170,7 @@
 	#     git config --global branch.autosetuprebase always
 	#
 	pr = pull --rebase
-	pr1 = "pull --rebase origin $(git branch-name)"
+	pr1 = !git pull --rebase origin $(git branch-name)
 
 	### rebase ###
 
