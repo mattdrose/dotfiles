@@ -527,6 +527,7 @@
 	discard = checkout --
 	# Clean and discard changes and untracked files in working tree
 	cleanout = !git clean -df && git checkout -- .
+	clearout = !git clean -df && git checkout -- .
 
 	# Edit all files of the given type
 	edit-cached = !"f() { git ls-files --cached | sort -u ; }; `git var GIT_EDITOR` `f`"
