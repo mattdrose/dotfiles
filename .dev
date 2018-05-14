@@ -1,6 +1,0 @@
-# Bundle Exec
-alias be="bundle exec"
-alias ber="be rails"
-
-# Shopify `dev` Tool
-if [[ -f /opt/dev/dev.sh ]]; then source /opt/dev/dev.sh; fi
