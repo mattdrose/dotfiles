@@ -508,7 +508,8 @@
 	reset-commit       = reset --soft HEAD~1
 	reset-commit-hard  = reset --hard HEAD~1
 	reset-commit-clean = !git reset --hard HEAD~1 && git clean -fd
-	reset-to-pristine   = !git reset --hard && git clean -ffdx
+	reset-stage        = reset --hard HEAD
+	reset-to-pristine  = !git reset --hard && git clean -ffdx
 	reset-to-upstream  = !git reset --hard $(git upstream-name)
 
 	# Undo is simply a synonym for "reset" because "undo" can help novices.
@@ -527,7 +528,6 @@
 	discard = checkout --
 	# Clean and discard changes and untracked files in working tree
 	cleanout = !git clean -df && git checkout -- .
-	clearout = !git clean -df && git checkout -- .
 
 	# Edit all files of the given type
 	edit-cached = !"f() { git ls-files --cached | sort -u ; }; `git var GIT_EDITOR` `f`"
