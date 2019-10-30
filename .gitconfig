@@ -636,6 +636,8 @@
 	tags = tag
 	stashes = stash list
 
+	# Reset one origin remote branch to another remote origin branch
+	remote-reset = !"f() { dest=\"$1\"; src=\"$2\"; git fetch origin \"$src\"; git checkout \"$dest\"; git reset --hard origin/\"$src\"; git push -f origin \"$dest\" --force-with-lease; }; f"
 
 	### SHELL SCRIPTING ALIASES ###
 
@@ -839,8 +841,8 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
-	# Make sure that interactive rebases open correctly with sublime
-	editor = subl -n -w
+	# Make sure that interactive rebases open correctly with vs code
+	editor = code -n -w
 
 [color]
 
