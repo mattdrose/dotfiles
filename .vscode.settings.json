@@ -35,12 +35,10 @@
   "editor.suggest.localityBonus": true,
   "files.exclude": {
     "**/.next": true,
-    //"**/node_modules": true
+    "**/node_modules": true
   },
   "gitlens.codeLens.authors.enabled": false,
-  "gitlens.codeLens.scopes": [
-    "document"
-  ],
+  "gitlens.codeLens.scopes": ["document"],
   "editor.minimap.enabled": false,
   "editor.renderWhitespace": "none",
   "breadcrumbs.enabled": true,
@@ -59,7 +57,7 @@
     "rubocop": {
       "exe": "/Users/mattrose/.gem/ruby/2.6.2/bin/rubocop",
       "lint": true,
-		  "rails": true
+      "rails": true
     }
   },
   "ruby.lintDebounceTime": 500,
@@ -120,5 +118,10 @@
       "name": "Vue Green",
       "value": "#42b883"
     }
-  ]
+  ],
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "todo-tree.tree.showScanModeButton": false
 }
