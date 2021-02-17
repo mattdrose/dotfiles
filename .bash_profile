@@ -3,9 +3,8 @@ export PATH="/usr/local:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
-# * ~/.profile can be used for profile specific bash commands.
 # * ~/.extra can be used for other settings you don’t want to commit.
-for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,profile,gitcompletion,shopify}; do
+for file in ~/.{path,bash_prompt,exports,aliases,functions,extra,gitcompletion,shopify}; do
 	[ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;

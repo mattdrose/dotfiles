@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [ $SPIN ]; then
+  sudo apt-get install -y rsync
+	sudo chsh -s /bin/bash spin
+fi
+
 cd "$(dirname "${BASH_SOURCE}")";
 
 function doIt() {
@@ -13,8 +18,8 @@ function doIt() {
 	source ~/.bash_profile;
 }
 
-if [ "$1" == "--force" -o "$1" == "-f" ]; then
-	doIt;
+if [ "$1" == "--force" -o "$1" == "-f" ]; then doIt;
+elif [ $SPIN ]; then doIt;
 else
 	read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
 	echo "";

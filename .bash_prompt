@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Shell prompt based on the Solarized Dark theme.
 # Screenshot: http://i.imgur.com/EkEtphC.png
 # Heavily inspired by @necolas’s prompt: https://github.com/necolas/dotfiles
@@ -75,7 +77,7 @@ if tput setaf 1 &> /dev/null; then
 	white=$(tput setaf 15);
 	yellow=$(tput setaf 136);
 else
-	bold='';
+	bold='\033[1m';
 	reset="\e[0m";
 	black="\e[1;30m";
 	blue="\e[1;34m";
@@ -96,19 +98,21 @@ else
 	userStyle="${orange}";
 fi;
 
-# Highlight the hostname when connected via SSH.
+# Change the icon and show host when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
-	hostStyle="${bold}${red}";
+	host="\[${white}\] at \[${yellow}\]\h";
+	icon="☁️ ";
 else
-	hostStyle="${yellow}";
+	host="";
+	icon="👨‍💻";
 fi;
 
 # Set the terminal title to the current working directory.
 PS1="\[\033]0;\w\007\]";
-PS1+="\[${bold}\]\n"; # newline
+PS1+="\n"; # newline
+PS1+="${icon} "; # icon
 PS1+="\[${userStyle}\]\u"; # username
-PS1+="\[${white}\] at ";
-PS1+="\[${hostStyle}\]\h"; # host
+PS1+="${host}"; # host
 PS1+="\[${white}\] in ";
 PS1+="\[${green}\]\w"; # working directory
 PS1+="\$(prompt_git \"${white} on ${violet}\")"; # Git repository details
