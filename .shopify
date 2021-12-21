@@ -1,25 +1,17 @@
-#!/usr/bin/env bash
-
 # Shopify `dev` Tool
-if [[ -f /opt/dev/dev.sh ]]; then source /opt/dev/dev.sh; fi
+if [ -f /opt/dev/dev.sh ]
+then 
+	source /opt/dev/dev.sh
+fi
 
 # Spin
 alias s='spin'
 
-function slast() {
-	echo $(spin list | grep -oE "$1--[^ ]*|[^ ]*--$1" | tail -1)
-}
-
 alias su='spin up'
 alias suw='spin up web'
 
-alias ss='spin shell' # ssh into latest web
-alias sss='spin shell $(slast shopify)' # ssh into latest shopify
+alias ss='spin shell'
 
-alias se='spin open' # edit latest web
-alias ses='spin open $(slast shopify)' # edit latest web
+alias sc='spin code'
 
-alias so='open https://shop1.$(slast shopify).matt-rose.us.spin.dev/admin' # open latest shopify
-alias sow='open https://$(slast web).matt-rose.us.spin.dev' # open latest web
-alias sos='open https://storybook.$(slast web).matt-rose.us.spin.dev' # open latest storybook
-alias soi='open https://app.$(slast shopify).matt-rose.us.spin.dev/services/internal/shops/1' # open latest services internal
+alias so='spin open'

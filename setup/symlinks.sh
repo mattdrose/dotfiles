@@ -1,8 +1,4 @@
-#!/usr/bin/env bash
-
-basedir="$HOME/dotfiles"
-bindir="$HOME/bin"
-repourl="git://github.com/mattdrose/dotfiles.git"
+#!/bin/bash
 
 function symlink() {
   src="$1"
@@ -26,10 +22,24 @@ function symlink() {
   ln -sf "$src" "$dest"
 }
 
+# VS Code
 if [ "$(uname -s)" = "Darwin" ]; then
-  vscodepath="$HOME/Library/Application Support/Code/User"
+  vscode_path="$HOME/Library/Application Support/Code/User"
 else
-  vscodepath="$HOME/.config/Code/User"
+  vscode_path="$HOME/.config/Code/User"
 fi
-mkdir -p "$vscodepath"
-symlink "$basedir/.vscode.settings.json" "$vscodepath/settings.json"
+mkdir -p "$vscode_path"
+symlink "$DOTFILES/.vscode.settings.json" "$vscode_path/settings.json"
+unset vscode_path
+
+# Karabiner
+karabiner_path="$HOME/.config/karabiner"
+mkdir -p "$karabiner_path"
+symlink "$DOTFILES/karabiner.json" "$karabiner_path/karabiner.json"
+unset vscode_path
+
+# Kill apps
+for app in "Visual Studio Code" "Karabiner-Elements"; do
+	killall "${app}" &> /dev/null
+done
+unset app

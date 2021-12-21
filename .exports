@@ -1,6 +1,8 @@
-#!/usr/bin/env bash
+export DOTFILES=$HOME/dotfiles
+export LSCOLORS="exfxcxdxbxegedabagacad"
+export CLICOLOR=true
 
-# Make vim the default editor.
+# Make vscode the default editor.
 export EDITOR='code';
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
