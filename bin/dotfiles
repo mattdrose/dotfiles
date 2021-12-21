@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+DOTFILES_PATH="$( cd .. -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+SETUP_FILE="$DOTFILES_PATH/setup/$1.sh"
+
+if [ $# -eq 0 ]
+then
+  source "$DOTFILES_PATH/bootstrap.zsh"
+elif [ -f "$SETUP_FILE" ]
+then
+  source $SETUP_FILE
+else
+  echo "Command doesn't exist"
+fi

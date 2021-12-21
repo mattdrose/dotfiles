@@ -15,7 +15,6 @@
   "explorer.confirmDelete": false,
   "editor.minimap.renderCharacters": false,
   "editor.tabSize": 2,
-  "window.zoomLevel": 0,
   "files.useExperimentalFileWatcher": true,
   "editor.cursorBlinking": "solid",
   "editor.glyphMargin": false,
@@ -45,8 +44,6 @@
   "workbench.editor.highlightModifiedTabs": true,
   "editor.acceptSuggestionOnCommitCharacter": false,
   "editor.acceptSuggestionOnEnter": "smart",
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
   "php.suggest.basic": false,
   "git.confirmSync": false,
   "files.insertFinalNewline": true,
@@ -123,5 +120,12 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "todo-tree.tree.showScanModeButton": false
+  "todo-tree.tree.showScanModeButton": false,
+  "liveshare.authenticationProvider": "GitHub",
+  "window.zoomLevel": 0,
+  "remote.SSH.defaultExtensions": [
+    "eamodio.gitlens",
+    "ms-vsliveshare.vsliveshare",
+    "natqe.reload"
+  ]
 }

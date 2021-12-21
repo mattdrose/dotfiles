@@ -1,86 +1,33 @@
 # Matt Rose's dotfiles
 
-This is a fork from [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles)
+## Setup
 
-## Installation
-
-### Using Git and the bootstrap script
-
-You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
+Clone into your home directory:
 
 ```bash
-git clone https://github.com/mattdrose/dotfiles.git && cd dotfiles && source bootstrap.sh
+cd ~ && git clone https://github.com/mattdrose/dotfiles.git && cd dotfiles
 ```
 
-To update, `cd` into your local `dotfiles` repository and then:
+For initial install, run:
 
 ```bash
-source bootstrap.sh
+bin/dotfiles
 ```
 
-Alternatively, to update while avoiding the confirmation prompt:
+## Commandes
 
-```bash
-set -- -f; source bootstrap.sh
-```
+### `dotfiles`
 
-### Git-free install
+Update your dotfiles with the dotfiles folder
 
-To install these dotfiles without Git:
+### `dotfiles macos`
 
-```bash
-cd; curl -#L https://github.com/mattdrose/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh,LICENSE-MIT.txt}
-```
+Set your macos defaults
 
-To update later on, just run that command again.
+### `dotfiles brew`
 
-### Specify the `$PATH`
+Install default utility apps
 
-If `~/.path` exists, it will be sourced along with the other files.
+### `dotfiles symlinks`
 
-Here’s an example `~/.path` file that adds `/usr/local/bin` to the `$PATH`:
-
-```bash
-export PATH="/usr/local/bin:$PATH"
-```
-
-### Add custom commands without creating a new fork
-
-If `~/.extra` exists, it will be sourced along with the other files. You can use this to add a few custom commands without the need to fork this entire repository, or to add commands you don’t want to commit to a public repository.
-
-You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/mattdrose/dotfiles/fork) instead, though.
-
-### Sensible Mac OS defaults
-
-When setting up a new Mac, you may want to set some sensible OS X defaults:
-
-```bash
-./.macos
-```
-
-### Install Homebrew formulae
-
-When setting up a new Mac, you may want to install some common [Homebrew](http://brew.sh/) formulae (after installing Homebrew, of course):
-
-```bash
-./brew.sh
-```
-
-### Install Common NPM Packages
-
-When setting up a new Mac, you may want to install some common [NPM](https://www.npmjs.com/) packages for front-end developers. If you already setup using homebrew, you should have [NVM](https://github.com/creationix/nvm).
-
-```bash
-./npm.sh
-```
-
-## Feedback
-
-Suggestions/improvements
-[welcome](https://github.com/mattdrose/dotfiles/issues)!
-
-## Original Author
-
-| [![twitter/mathias](http://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](http://twitter.com/mathias "Follow @mathias on Twitter") |
-|---|
-| [Mathias Bynens](https://mathiasbynens.be/) |
+Setup symlinks used for configs

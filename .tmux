@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # start new
 alias t='tmux'
 alias tn='tmux new -s'
@@ -19,10 +17,12 @@ alias tka='tmux ls | grep : | cut -d. -f1 | awk "{print substr($1, 0, length($1)
 
 # tmux dev session
 function tdev() {
-  if [ $# -eq 0 ]; then
+  if [ $# -eq 0 ]
+  then
     local session="tmux new -s dev"
   else
     local session="tmux a -t $@"
-  fi;
+  fi
+  
   $session \; split-window -v -p 60 \; split-window -hd \;
 }
