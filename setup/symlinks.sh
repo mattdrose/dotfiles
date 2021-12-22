@@ -29,13 +29,13 @@ else
   vscode_path="$HOME/.config/Code/User"
 fi
 mkdir -p "$vscode_path"
-symlink "$DOTFILES/.vscode.settings.json" "$vscode_path/settings.json"
+symlink "$DOTFILES/config/.vscode.settings.json" "$vscode_path/settings.json"
 unset vscode_path
 
 # Karabiner
 karabiner_path="$HOME/.config/karabiner"
 mkdir -p "$karabiner_path"
-symlink "$DOTFILES/karabiner.json" "$karabiner_path/karabiner.json"
+symlink "$DOTFILES/config/karabiner.json" "$karabiner_path/karabiner.json"
 unset vscode_path
 
 # Kill apps
@@ -43,3 +43,5 @@ for app in "Visual Studio Code" "Karabiner-Elements"; do
 	killall "${app}" &> /dev/null
 done
 unset app
+
+echo "Done."
