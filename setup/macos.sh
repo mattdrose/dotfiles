@@ -68,16 +68,15 @@ defaults write NSGlobalDomain NSDisableAutomaticTermination -bool true
 # Set Help Viewer windows to non-floating mode
 defaults write com.apple.helpviewer DevMode -bool true
 
-
 # Reveal IP address, hostname, OS version, etc. when clicking the clock
 # in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
 # Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
+sudo systemsetup -setrestartfreeze on &> /dev/null
 
 # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+sudo systemsetup -setcomputersleep Off &> /dev/null
 
 # Disable smart quotes as they’re annoying when typing code
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
@@ -136,7 +135,7 @@ defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "America/Toronto" > /dev/null
+sudo systemsetup -settimezone "America/Toronto" &> /dev/null
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
@@ -333,13 +332,6 @@ defaults write com.apple.dock autohide -bool true
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
-
-# Reset Launchpad, but keep the desktop wallpaper intact
-find "${HOME}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
-
-# Add iOS & Watch Simulator to Launchpad
-sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
-sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator (Watch).app" "/Applications/Simulator (Watch).app"
 
 # Hot corners
 # Possible values:
@@ -642,5 +634,27 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool true
 # Expand the print dialog by default
 defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
 defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
+
+# Keep Chrome in light mode
+defaults write com.google.Chrome NSRequiresAquaSystemAppearance -bool YES
+defaults write com.google.Chrome.canary NSRequiresAquaSystemAppearance -bool YES
+
+###############################################################################
+# Terminal theme                                                              #
+###############################################################################
+
+open "$DOTFILES_PATH/config/dracula.terminal"
+osascript -e 'tell app "Terminal" to close front window'
+defaults write com.apple.Terminal "NSWindow Frame TTWindow dracula" -string '69 148 655 735 0 0 1512 944 '
+defaults write com.apple.Terminal "Default Window Settings" -string 'dracula'
+defaults write com.apple.Terminal "Startup Window Settings" -string 'dracula'
+
+###############################################################################
+# Login items                                                                 #
+###############################################################################
+
+for app in "Rectangle" "Karabiner-Elements" "Alfred 4" "Google Drive" "1 Password"; do
+	osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"/Applications/${app}.app\", hidden:false}" &> /dev/null
+done
 
 echo "Done. Note that some of these changes require a logout/restart to take effect."
