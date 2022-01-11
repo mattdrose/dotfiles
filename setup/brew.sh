@@ -17,6 +17,9 @@ brew install --cask karabiner-elements
 brew install --cask tuple
 brew install --cask smoothscroll
 brew install --cask alfred
+brew install --cask 1password
+brew install --cask google-drive
+brew install --cask beardedspice
 
 # Remove outdated versions from the cellar.
 brew cleanup

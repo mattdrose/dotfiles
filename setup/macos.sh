@@ -653,7 +653,7 @@ defaults write com.apple.Terminal "Startup Window Settings" -string 'dracula'
 # Login items                                                                 #
 ###############################################################################
 
-for app in "Rectangle" "Karabiner-Elements" "Alfred 4" "Google Drive" "1 Password"; do
+for app in "Rectangle" "Karabiner-Elements" "Alfred 4" "Google Drive" "1 Password" "BeardedSpice"; do
 	osascript -e "tell application \"System Events\" to make login item at end with properties {path:\"/Applications/${app}.app\", hidden:false}" &> /dev/null
 done
 
