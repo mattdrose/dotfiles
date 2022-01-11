@@ -1,16 +1,12 @@
 #!/bin/zsh
 
-if [ $SPIN ]; then
-  sudo apt-get install -y rsync
-fi
-
 function init() {
   rsync \
     --exclude ".git/" \
     --exclude ".DS_Store" \
     --exclude "config/" \
     --exclude "setup/" \
-    --exclude "bootstrap.zsh" \
+    --exclude "bootstrap" \
     --exclude "README.md" \
     --exclude "LICENSE-MIT.txt" \
     -avh --no-perms . ~;

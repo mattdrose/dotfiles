@@ -6,7 +6,7 @@ SETUP_FILE="$DOTFILES_PATH/setup/$1.sh"
 
 if [ $# -eq 0 ]
 then
-  source "$DOTFILES_PATH/bootstrap.zsh"
+  source "$DOTFILES_PATH/bootstrap"
 elif [ -f "$SETUP_FILE" ]
 then
   source $SETUP_FILE

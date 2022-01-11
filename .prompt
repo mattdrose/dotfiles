@@ -37,11 +37,11 @@ git_prompt_info() {
 need_push() {
   if [ $($git rev-parse --is-inside-work-tree 2>/dev/null) ]
   then
-    number=$($git cherry -v origin/$(git symbolic-ref --short HEAD) 2>/dev/null | wc -l | bc)
+    number=$($git cherry -v origin/$(git symbolic-ref --short HEAD) 2>/dev/null | wc -l | awk '{print $1}')
 
     if [[ $number == 0 ]]
     then
-      echo " "
+      echo ""
     else
       echo " with %{$fg_bold[magenta]%}$number unpushed%{$reset_color%}"
     fi
@@ -50,13 +50,6 @@ need_push() {
 
 directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
-}
-
-host() {
-  if [ "${SSH_TTY}" ]
-  then
-	  echo "%{$reset_color%} at %{$fg_bold[yellow]%}%m%{$reset_color%}";
-  fi;
 }
 
 icon() {
@@ -78,7 +71,7 @@ user() {
   echo "%{$user_color%}%n%{$reset_color%}";
 }
 
-export PROMPT=$'\n$(icon)$(host) $(user) in $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(icon) $(user) in $(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt() {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
@@ -92,7 +85,6 @@ unset git_dirty
 unset git_prompt_info
 unset need_push
 unset directory_name
-unset host
 unset icon
 unset user
 unset set_prompt
