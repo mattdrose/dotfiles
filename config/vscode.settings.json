@@ -23,7 +23,7 @@
   "workbench.statusBar.visible": true,
   "vim.foldfix": true,
   "editor.lineHeight": 20,
-  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.fontSize": 14,
   "search.exclude": {
     "**/*.js.snap": true,
     "**/*.ts.snap": true,
@@ -122,10 +122,11 @@
   },
   "todo-tree.tree.showScanModeButton": false,
   "liveshare.authenticationProvider": "GitHub",
-  "window.zoomLevel": 0,
   "remote.SSH.defaultExtensions": [
     "eamodio.gitlens",
     "ms-vsliveshare.vsliveshare",
     "natqe.reload"
-  ]
+  ],
+  "window.zoomLevel": 1,
+  "editor.inlineSuggest.enabled": true
 }
