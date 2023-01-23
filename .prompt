@@ -53,7 +53,10 @@ directory_name() {
 }
 
 icon() {
-  if [ "${SSH_TTY}" ]
+  if [ $SPIN ]
+  then
+    echo "꩜";
+  elif [ "${SSH_TTY}" ]
   then
 	  echo "☁️ ";
   else
@@ -68,7 +71,14 @@ user() {
   else
   	user_color="$fg_bold[blue]";
   fi
-  echo "%{$user_color%}%n%{$reset_color%}";
+
+  if [ $SPIN ]
+  then
+    user_display=$(hostname -A | xargs)
+  else
+    user_display="%n"
+  fi
+  echo "%{$user_color%}$user_display%{$reset_color%}";
 }
 
 export PROMPT=$'\n$(icon) $(user) in $(directory_name) $(git_dirty)$(need_push)\n› '
