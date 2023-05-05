@@ -16,18 +16,18 @@ bin/dotfiles
 
 ## Commandes
 
-### `dotfiles`
+### `bin/dotfiles`
 
 Update your dotfiles with the dotfiles folder
 
-### `dotfiles macos`
+### `bin/dotfiles macos`
 
 Set your macos defaults
 
-### `dotfiles brew`
+### `bin/dotfiles brew`
 
 Install default utility apps
 
-### `dotfiles symlinks`
+### `bin/dotfiles symlinks`
 
 Setup symlinks used for configs
