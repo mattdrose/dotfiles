@@ -19,7 +19,7 @@ brew upgrade
 # Install CLI tools
 brew install git-completion
 brew install gh
-brew install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 # Install GUI tools
 brew install --cask rectangle
