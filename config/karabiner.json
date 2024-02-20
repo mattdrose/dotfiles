@@ -64,9 +64,75 @@
             ]
           },
           {
+            "description": "Command + K searches tabs in Google Chrome",
+            "manipulators": [
+              {
+                "type": "basic",
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ]
+                  }
+                ],
+                "from": {
+                  "key_code": "k",
+                  "modifiers": {
+                    "mandatory": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "a",
+                    "modifiers": [
+                      "command",
+                      "shift"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "description": "Command + P to highlight current tab search in Google Chrome",
+            "manipulators": [
+              {
+                "type": "basic",
+                "conditions": [
+                  {
+                    "type": "frontmost_application_if",
+                    "bundle_identifiers": [
+                      "^com\\.google\\.Chrome$"
+                    ]
+                  }
+                ],
+                "from": {
+                  "key_code": "p",
+                  "modifiers": {
+                    "mandatory": [
+                      "caps_lock"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "l",
+                    "modifiers": [
+                      "command"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
             "description": "Change caps_lock key to command+control+option+shift",
             "manipulators": [
               {
+                "type": "basic",
                 "from": {
                   "key_code": "caps_lock",
                   "modifiers": {
@@ -84,8 +150,7 @@
                       "left_option"
                     ]
                   }
-                ],
-                "type": "basic"
+                ]
               }
             ]
           }
