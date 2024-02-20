@@ -23,3 +23,15 @@ export MANPAGER='less -X';
 
 # Always enable colored `grep` output.
 export GREP_OPTIONS='--color=auto';
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+export ANDROID_HOME=/Users/matt/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# bun completions
+[ -s "/Users/matt/.bun/_bun" ] && source "/Users/matt/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
