@@ -32,6 +32,7 @@ brew install --cask beardedspice
 brew install --cask spotify
 brew install --cask visual-studio-code
 brew install --cask google-chrome
+brew install --cask simplenote
 
 # Remove outdated versions from the cellar.
 brew cleanup
