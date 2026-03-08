@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/bin/zsh
+
+set -euo pipefail
 
 function symlink() {
   src="$1"
@@ -6,15 +8,13 @@ function symlink() {
 
   if [ -e "$dest" ]; then
     if [ -L "$dest" ]; then
-      # Already symlinked -- I'll assume correctly.
       return
     else
-      # Rename files with a ".old" extension.
       echo "$dest already exists, renaming to $dest.old"
       backup="$dest.old"
       if [ -e "$backup" ]; then
-        echo "Error: "$backup" already exists. Please delete or rename it."
-        exit 1
+        echo "Error: $backup already exists. Please delete or rename it."
+        return 1
       fi
       mv -v "$dest" "$backup"
     fi
@@ -29,7 +29,7 @@ else
   vscode_path="$HOME/.config/Code/User"
 fi
 mkdir -p "$vscode_path"
-symlink "$DOTFILES/config/.vscode.settings.json" "$vscode_path/settings.json"
+symlink "$DOTFILES/config/vscode.settings.json" "$vscode_path/settings.json"
 unset vscode_path
 
 # Karabiner
@@ -40,7 +40,7 @@ unset karabiner_path
 
 # Kill apps
 for app in "Visual Studio Code" "Karabiner-Elements"; do
-	killall "${app}" &> /dev/null
+	killall "${app}" &> /dev/null || true
 done
 unset app
 

@@ -1,31 +1,53 @@
 #!/bin/zsh
 
-function init() {
-  rsync \
-    --exclude ".git/" \
-    --exclude ".DS_Store" \
-    --exclude "config/" \
-    --exclude "setup/" \
-    --exclude "bootstrap" \
-    --exclude "README.md" \
-    --exclude "LICENSE-MIT.txt" \
-    -avh --no-perms . ~;
-  source ~/.zshrc;
+set -euo pipefail
+
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+link_file() {
+  local src="$1" dest="$2"
+
+  if [ -L "$dest" ]; then
+    if [ "$(readlink "$dest")" = "$src" ]; then
+      return
+    fi
+    rm "$dest"
+  elif [ -e "$dest" ]; then
+    mv "$dest" "$dest.old"
+    echo "Backed up $dest → $dest.old"
+  fi
+
+  ln -sf "$src" "$dest"
+  echo "Linked $dest"
+}
+
+init() {
+  for file in "$DOTFILES_DIR"/.*; do
+    local filename="$(basename "$file")"
+    case "$filename" in
+      .|..|.git|.DS_Store)
+        continue
+        ;;
+    esac
+    link_file "$file" "$HOME/$filename"
+  done
+
+  link_file "$DOTFILES_DIR/bin" "$HOME/bin"
+
+  source "$HOME/.zshrc"
 
   if type tmux >/dev/null 2>/dev/null; then
-    tmux source-file ~/.tmux.conf
+    tmux source-file "$HOME/.tmux.conf"
   fi
 }
 
-if [ "$1" = "--force" -o "$1" = "-f" ]; then 
+if [[ "${1:-}" == "--force" || "${1:-}" == "-f" ]]; then
   init
-elif [ $SPIN ]; then
+elif [[ -n "${SPIN:-}" ]]; then
   init
 else
-  read "REPLY?This may overwrite existing files in your home directory. Are you sure? (y/n) "
+  read "REPLY?This will symlink dotfiles to your home directory. Continue? (y/n) "
   if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     init
   fi
 fi
-
-unset init

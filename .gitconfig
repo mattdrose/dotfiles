@@ -774,11 +774,6 @@
 	# such as other version control system e.g. CVS, Subversion, etc.
 	##
 
-	### CVS ALIAS ###
-
-	cvs-i = cvsimport -k -a
-	cvs-e = cvsexportcommit -u -p
-
 	### GitK ###
 
 	# show conflicting merge in gitk:
@@ -792,13 +787,6 @@
 	# Do everything we can to synchronize all changes for a Ruby On Rails app.
 	# We like using rebase (instead of merge), bundle for gems, and rake db:migrate
 	rails-get = !"git pull --rebase; git submodule update --init --recursive; bundle check || bundle install; bundle exec rake db:migrate; bundle exec rake db:test:prepare"
-
-	### Subversion ###
-
-	svn-b = svn branch
-	svn-m = merge --squash
-	svn-c = svn dcommit
-	svn-cp = !GIT_EDITOR='sed -i /^git-svn-id:/d' git cherry-pick --edit
 
 	##########################################################################
 
@@ -881,10 +869,20 @@
 
 [push]
 
-	# Use the Git 1.x.x default to avoid errors on machines with old Git
-	# installations. To use `simple` instead, add this to your `~/.extra` file:
-	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
+	# Push only the current branch (Git 2.0+ default)
+	default = simple
+
+[init]
+
+	defaultBranch = main
+
+[pull]
+
+	rebase = true
+
+[fetch]
+
+	prune = true
 
 # URL shorthands
 
