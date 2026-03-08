@@ -137,4 +137,4 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias reload="exec $SHELL -l"
 
 # dotfiles must be sourced so commands like `reload` can affect the current shell
-alias dotfiles='source ~/dotfiles/bin/dotfiles'
+alias dotfiles='source $DOTFILES_PATH/bin/dotfiles'

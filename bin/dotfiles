@@ -2,7 +2,7 @@
 
 DOTFILES_PATH="$(cd -P "$(dirname "$0")/.." >/dev/null 2>&1 && pwd -P)"
 
-SETUP_FILE="$DOTFILES_PATH/setup/$1.sh"
+SETUP_FILE="$DOTFILES_PATH/commands/$1.sh"
 
 if [ $# -eq 0 ]
 then

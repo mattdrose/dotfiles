@@ -53,7 +53,7 @@ Configures macOS system defaults (Finder, Dock, keyboard, trackpad, etc.).
 | `.tmux.conf` | Tmux configuration |
 | `Brewfile` | Declarative Homebrew package list |
 | `config/` | App configs symlinked by `bin/dotfiles symlinks` |
-| `setup/` | Setup scripts invoked by `bin/dotfiles <command>` |
+| `commands/` | Scripts invoked by `bin/dotfiles <command>` |
 
 ## Customization
 

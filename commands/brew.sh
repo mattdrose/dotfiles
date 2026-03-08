@@ -19,6 +19,6 @@ if [ ! -d "$HOME/.nvm" ]; then
 fi
 
 # git-fuzzy (requires fzf from Brewfile)
-source "${DOTFILES:-$HOME/dotfiles}/setup/git-fuzzy.sh"
+source "${DOTFILES:-$HOME/dotfiles}/commands/git-fuzzy.sh"
 
 brew cleanup
