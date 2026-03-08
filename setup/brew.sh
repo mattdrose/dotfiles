@@ -17,6 +17,7 @@ fi
 brew upgrade
 
 # Install CLI tools
+brew install tmux
 brew install git-completion
 brew install gh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash

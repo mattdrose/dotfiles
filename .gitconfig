@@ -756,15 +756,6 @@
 		git commit --verbose'"
 
 	# Thanks to jtolds on stackoverflow
-	remote-ref = !"sh -c ' \
-		local_ref=$(git symbolic-ref HEAD); \
-		local_name=${local_ref##refs/heads/}; \
-		remote=$(git config branch.\"#local_name\".remote || echo origin); \
-		remote_ref=$(git config branch.\"$local_name\".merge); \
-		remote_name=${remote_ref##refs/heads/}; \
-		echo remotes/$remote/$remote_name'"
-
-	# Thanks to jtolds on stackoverflow
 	rebase-recent = !git rebase --interactive $(git remote-ref)
 
 	# Use graphviz for display.
@@ -845,8 +836,8 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
-	# Make sure that interactive rebases open correctly with vs code
-	editor = code -n -w
+	# Make sure that interactive rebases open correctly with cursor
+	editor = cursor -n -w
 
 [color]
 
@@ -904,7 +895,6 @@
 	pushInsteadOf = "git://github.com/"
 
 [url "git://github.com/"]
-
 	insteadOf = "github:"
 
 [url "git@gist.github.com:"]
@@ -914,5 +904,7 @@
 	pushInsteadOf = "git://gist.github.com/"
 
 [url "git://gist.github.com/"]
-
 	insteadOf = "gist:"
+
+[includeIf "gitdir:~/code/bitbucket.org/"]
+  path = ~/.gitconfig-suns

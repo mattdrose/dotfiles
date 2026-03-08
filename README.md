@@ -14,7 +14,7 @@ For initial install, run:
 bin/dotfiles
 ```
 
-## Commandes
+## Commands
 
 ### `bin/dotfiles`
 

@@ -36,7 +36,7 @@ unset vscode_path
 karabiner_path="$HOME/.config/karabiner"
 mkdir -p "$karabiner_path"
 symlink "$DOTFILES/config/karabiner.json" "$karabiner_path/karabiner.json"
-unset vscode_path
+unset karabiner_path
 
 # Kill apps
 for app in "Visual Studio Code" "Karabiner-Elements"; do

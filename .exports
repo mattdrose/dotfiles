@@ -2,8 +2,8 @@ export DOTFILES=$HOME/dotfiles
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
-# Make vscode the default editor.
-export EDITOR='code';
+# Make cursor the default editor.
+export EDITOR='cursor';
 
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 export HISTSIZE='32768';

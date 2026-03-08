@@ -299,7 +299,7 @@ tmux_conf_copy_to_os_clipboard=false
 set -g mouse on
 
 # set default shell to bash
-set-option -g default-shell /bin/bash
+set-option -g default-shell /bin/zsh
 
 # increase history size
 #set -g history-limit 10000
