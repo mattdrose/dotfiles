@@ -20,6 +20,8 @@ bin/dotfiles
 
 Symlinks all dotfiles from the repo into your home directory. Existing files are backed up with a `.old` extension. Since files are symlinked (not copied), edits in `~` are reflected back in the repo.
 
+> **Note:** `.zshrc` and `.gitconfig` are not symlinked. Instead, `dotfiles` writes a real file at `~/.zshrc` / `~/.gitconfig` that sources or includes the repo version. This way, machine-specific tools (e.g. `nvm`, credential helpers) can append to those files without dirtying the repo.
+
 ### `dotfiles brew`
 
 Installs Homebrew (if needed) and all packages defined in the `Brewfile`, including modern CLI tools like `ripgrep`, `fd`, `bat`, `fzf`, and `eza`. Also installs nvm for Node.js version management.
