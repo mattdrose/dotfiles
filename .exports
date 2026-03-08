@@ -14,3 +14,6 @@ export LESS_TERMCAP_md="${yellow}";
 
 # Don't clear the screen after quitting a manual page.
 export MANPAGER='less -X';
+
+# git-fuzzy: use delta as the pager
+export GF_PREFERRED_PAGER="delta"

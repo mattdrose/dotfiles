@@ -18,4 +18,7 @@ if [ ! -d "$HOME/.nvm" ]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 fi
 
+# git-fuzzy (requires fzf from Brewfile)
+source "${DOTFILES:-$HOME/dotfiles}/setup/git-fuzzy.sh"
+
 brew cleanup

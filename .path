@@ -35,6 +35,9 @@ fi
 [ -d "/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home" ] && \
   export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home"
 
+# git-fuzzy
+[ -d "$HOME/.git-fuzzy/bin" ] && export PATH="$HOME/.git-fuzzy/bin:$PATH"
+
 # fzf
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
