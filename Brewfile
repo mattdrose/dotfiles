@@ -8,7 +8,6 @@ brew "bat"
 brew "eza"
 brew "fzf"
 brew "git-delta"
-brew "starship"
 brew "zoxide"
 
 # GUI apps

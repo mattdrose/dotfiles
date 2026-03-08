@@ -21,18 +21,43 @@ link_file() {
   echo "Linked $dest"
 }
 
+# For files that external tools modify (git credential helpers, shell
+# installers, etc.), use include/source instead of symlinks so writes
+# go to the real ~/.file and don't dirty the repo.
+include_file() {
+  local src="$1" dest="$2" directive="$3"
+
+  if [ -L "$dest" ]; then
+    rm "$dest"
+  elif [ -e "$dest" ]; then
+    if grep -qF "$directive" "$dest" 2>/dev/null; then
+      return
+    fi
+    mv "$dest" "$dest.old"
+    echo "Backed up $dest → $dest.old"
+  fi
+
+  echo "$directive" > "$dest"
+  echo "Created $dest"
+}
+
 init() {
   for file in "$DOTFILES_DIR"/.*; do
     local filename="$(basename "$file")"
     case "$filename" in
-      .|..|.git|.DS_Store)
+      .|..|.git|.DS_Store|.gitconfig|.zshrc)
         continue
         ;;
     esac
     link_file "$file" "$HOME/$filename"
   done
 
-  link_file "$DOTFILES_DIR/bin" "$HOME/bin"
+  include_file "$DOTFILES_DIR/.gitconfig" "$HOME/.gitconfig" \
+    "[include]
+    path = $DOTFILES_DIR/.gitconfig"
+
+  include_file "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc" \
+    "source \"$DOTFILES_DIR/.zshrc\""
 
   source "$HOME/.zshrc"
 

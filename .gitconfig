@@ -915,6 +915,3 @@
 
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
-
-[includeIf "gitdir:~/code/bitbucket.org/"]
-  path = ~/.gitconfig-suns
