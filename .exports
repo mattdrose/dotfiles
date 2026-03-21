@@ -17,3 +17,6 @@ export MANPAGER='less -X';
 
 # git-fuzzy: use delta as the pager
 export GF_PREFERRED_PAGER="delta"
+
+# default llm
+export LLM_MODEL=opencode/gpt-5.4-mini

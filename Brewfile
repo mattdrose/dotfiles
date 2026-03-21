@@ -9,6 +9,7 @@ brew "eza"
 brew "fzf"
 brew "git-delta"
 brew "zoxide"
+brew "llm"
 
 # GUI apps
 cask "rectangle"

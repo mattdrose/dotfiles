@@ -1,0 +1,32 @@
+# OpenCode Zen - chat/completions compatible models
+# https://opencode.ai/docs/zen/
+# api_base must be the OpenAI client base (…/v1 only): llm appends /chat/completions itself.
+# model_name is the Zen API model id (see opencode.ai/docs/zen/); opencode/ and go/ are app-config only.
+# can_stream: false — Zen’s SSE chunks can omit or shape `choices` differently than OpenAI; default
+# streaming leaves llm’s combine_chunks() failing after text is printed (e.g. NoneType not subscriptable).
+
+# --- GPT models ---
+- model_id: opencode/gpt-5.4-mini
+  model_name: gpt-5.4-mini
+  api_base: "https://opencode.ai/zen/v1"
+  api_key_name: opencode
+  can_stream: false
+
+- model_id: go/kimi-k2.5
+  model_name: kimi-k2.5
+  api_base: "https://opencode.ai/zen/go/v1"
+  api_key_name: opencode
+  can_stream: false
+
+- model_id: go/glm-5
+  model_name: glm-5
+  api_base: "https://opencode.ai/zen/go/v1"
+  api_key_name: opencode
+  can_stream: false
+
+- model_id: go/minimax-m2.7
+  model_name: minimax-m2.7
+  api_base: "https://opencode.ai/zen/go/v1"
+  api_key_name: opencode
+  can_stream: false
+

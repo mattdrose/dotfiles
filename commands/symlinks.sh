@@ -12,10 +12,11 @@ function symlink() {
     else
       echo "$dest already exists, renaming to $dest.old"
       backup="$dest.old"
-      if [ -e "$backup" ]; then
-        echo "Error: $backup already exists. Please delete or rename it."
-        return 1
-      fi
+      i=0
+      while [ -e "$backup" ]; do
+        i=$((i + 1))
+        backup="$dest.old.$i"
+      done
       mv -v "$dest" "$backup"
     fi
   fi
@@ -37,6 +38,12 @@ karabiner_path="$HOME/.config/karabiner"
 mkdir -p "$karabiner_path"
 symlink "$DOTFILES/config/karabiner.json" "$karabiner_path/karabiner.json"
 unset karabiner_path
+
+# llm
+llm_dir="$HOME/Library/Application Support/io.datasette.llm"
+mkdir -p "$llm_dir"
+symlink "$DOTFILES/config/extra-openai-models.yaml" "$llm_dir/extra-openai-models.yaml"
+unset llm_dir
 
 # Kill apps
 for app in "Visual Studio Code" "Karabiner-Elements"; do

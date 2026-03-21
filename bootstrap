@@ -71,7 +71,8 @@ if [[ "${1:-}" == "--force" || "${1:-}" == "-f" ]]; then
 elif [[ -n "${SPIN:-}" ]]; then
   init
 else
-  read "REPLY?This will symlink dotfiles to your home directory. Continue? (y/n) "
+  # read returns 1 on EOF (no TTY / piped stdin); avoid exiting under set -e
+  read "REPLY?This will symlink dotfiles to your home directory. Continue? (y/n) " || REPLY=n
   if [[ "$REPLY" =~ ^[Yy]$ ]]; then
     init
   fi
