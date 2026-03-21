@@ -13,6 +13,7 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/projects"
 alias g="git"
+alias gf="git fuzzy"
 alias h="history"
 alias j="jobs"
 
@@ -31,13 +32,13 @@ export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40
 alias l="eza -lF --icons"
 
 # List all files colorized in long format, including dot files
-alias ll="eza -laF --icons --group-directories-first"
+alias ll="eza -laF --icons --group-directories-first --no-git"
 
 # List only directories
 alias lsd="eza -lD --icons"
 
 # Always list directory contents upon 'cd'
-cd() { builtin cd "$@"; ll; }
+cd() { builtin cd "$@"; ls -lah; }
 
 # Edit using editor
 alias edit='cursor'
