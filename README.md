@@ -50,7 +50,6 @@ Configures macOS system defaults (Finder, Dock, keyboard, trackpad, etc.).
 | `.zsh` | Zsh-specific options (history, completion) |
 | `.prompt` | Custom Zsh prompt with git status |
 | `.gitconfig` | Git config with extensive aliases |
-| `.gitconfig-suns` | Work-specific git identity (included via `includeIf`) |
 | `.editorconfig` | Editor formatting defaults |
 | `.tmux.conf` | Tmux configuration |
 | `Brewfile` | Declarative Homebrew package list |
@@ -60,3 +59,14 @@ Configures macOS system defaults (Finder, Dock, keyboard, trackpad, etc.).
 ## Customization
 
 Create a `~/.extra` file for machine-specific settings you don't want committed (it's gitignored). It will be sourced automatically if present.
+
+### Git commit signing
+
+Commit and tag signing are enabled by default in `.gitconfig` using SSH signing (`gpg.format = ssh`).
+
+Use `~/.gitconfig` to define your machine-local signing key, for example:
+
+```ini
+[user]
+	signingkey = ~/.ssh/id_ed25519_github_personal.pub
+```

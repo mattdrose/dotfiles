@@ -16,11 +16,7 @@ export PATH="$HOME/bin:$PATH"
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d "$PYENV_ROOT/bin" ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-command -v pyenv >/dev/null && eval "$(pyenv init - zsh)"
-
-# nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+command -v pyenv >/dev/null && eval "$(pyenv init - zsh --no-rehash)"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -46,3 +42,11 @@ fi
 
 # zoxide
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
+
+# nvm — sourced last and forced to front of PATH so it always wins over Homebrew's node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+[ -n "$NVM_BIN" ] && case "$PATH" in
+  "$NVM_BIN:"*) ;;
+  *) export PATH="$NVM_BIN:$PATH" ;;
+esac

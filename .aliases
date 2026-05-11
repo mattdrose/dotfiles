@@ -34,9 +34,6 @@ alias ll="eza -laF --icons --group-directories-first --no-git"
 # List only directories
 alias lsd="eza -lD --icons"
 
-# Always list directory contents upon 'cd'
-cd() { builtin cd "$@"; ls -lah; }
-
 # Edit using editor
 alias edit='cursor'
 
@@ -139,3 +136,137 @@ alias dotfiles='source $DOTFILES_PATH/bin/dotfiles'
 
 # llm
 ai() { llm "$*"; }
+
+# quickly branch a new worktree
+wb() { git wb "$1" && edit .; }
+
+# Copy cwd to ../<dirname>-<branch>, cd there, branch, and open editor — runs in a subshell so your cwd/session is unchanged.
+workspace() {
+	[ -n "$1" ] || {
+		echo "usage: workspace <branch-name>" >&2
+		return 1
+	}
+	local src dest ws_exit
+	src=$(pwd -P)
+	dest="$(dirname "$src")/$(basename "$src")-$1"
+	[ ! -e "$dest" ] || {
+		echo "workspace: already exists: $dest" >&2
+		return 1
+	}
+	printf '[workspace] starting (source %s)\n' "$src"
+	(
+		set -e
+		_ws_log() { printf '[workspace] %s\n' "$*"; }
+		_ws_log "copying tree → $dest (might take a while)"
+		cd "$src"
+		cp -aR . "$dest"
+		_ws_log "entering $dest"
+		cd "$dest"
+		_ws_log "creating branch $1"
+		git checkout -b "$1"
+		_ws_log "opening editor"
+		edit .
+		_ws_log "done"
+	); ws_exit=$?
+	if [ "$ws_exit" -ne 0 ]; then
+		printf '[workspace] failed (exit %s)\n' "$ws_exit" >&2
+		return "$ws_exit"
+	fi
+}
+
+# load .env file into the environment
+_dotenv_load_file() {
+  local env_file="$1"
+  local line trimmed key value line_no=0
+
+  while IFS= read -r line || [ -n "$line" ]; do
+    line_no=$((line_no + 1))
+    # Handle CRLF files.
+    line="${line%$'\r'}"
+
+    # Trim leading whitespace for parsing/comment detection.
+    trimmed="${line#"${line%%[![:space:]]*}"}"
+
+    case "$trimmed" in
+      ''|'#'*) continue ;;
+    esac
+
+    # Support optional `export KEY=value`.
+    case "$trimmed" in
+      export[[:space:]]*)
+        trimmed="${trimmed#export}"
+        trimmed="${trimmed#"${trimmed%%[![:space:]]*}"}"
+        ;;
+    esac
+
+    if [ "${trimmed#*=}" = "$trimmed" ]; then
+      echo "dotenv: invalid entry at ${env_file}:${line_no}" >&2
+      return 1
+    fi
+
+    key="${trimmed%%=*}"
+    value="${trimmed#*=}"
+
+    # Trim key whitespace only. Value is preserved as-is.
+    key="${key%"${key##*[![:space:]]}"}"
+    key="${key#"${key%%[![:space:]]*}"}"
+
+    case "$key" in
+      ''|[0-9]*|*[!A-Za-z0-9_]*)
+        echo "dotenv: invalid variable name at ${env_file}:${line_no}: $key" >&2
+        return 1
+        ;;
+    esac
+
+    # Preserve complex values, but unwrap matching surrounding quotes.
+    case "$value" in
+      \"*\") value="${value#\"}"; value="${value%\"}" ;;
+      \'*\') value="${value#\'}"; value="${value%\'}" ;;
+    esac
+
+    export "$key=$value"
+  done < "$env_file"
+}
+
+dotenv() {
+  local env_file=".env"
+  local load_only=0
+
+  # Allow `dotenv -f path/to/file ...`
+  if [ "$1" = "-f" ] || [ "$1" = "--file" ]; then
+    if [ -z "$2" ]; then
+      echo "usage: dotenv [-f env-file] [--] [command] [args...]" >&2
+      return 1
+    fi
+    env_file="$2"
+    shift 2
+  # Backward-compatible: `dotenv path/to/file command ...` or `dotenv path/to/file`
+  elif [ "$#" -gt 0 ] && [ -e "$1" ]; then
+    env_file="$1"
+    shift
+  fi
+
+  if [ "$1" = "--" ]; then
+    shift
+  fi
+
+  if [ ! -e "$env_file" ] || [ ! -r "$env_file" ]; then
+    echo "dotenv: env file not found or unreadable: $env_file" >&2
+    return 1
+  fi
+
+  if [ "$#" -eq 0 ]; then
+    load_only=1
+  fi
+
+  if [ "$load_only" -eq 1 ]; then
+    _dotenv_load_file "$env_file"
+    return $?
+  fi
+
+  # Run command in a subshell so exports do not leak into your current shell.
+  (
+    _dotenv_load_file "$env_file" || exit $?
+    exec "$@"
+  )
+}

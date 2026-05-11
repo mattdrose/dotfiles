@@ -23,7 +23,7 @@
 	p = pull
 	r = remote
 	s = status
-	w = whatchanged
+	w = worktree
 
 	##
 	# Short aliases for our frequent commands.
@@ -61,6 +61,12 @@
 
 	# branch and checkout the newly created branch
 	bo = checkout -b
+
+	# branch delete
+	bd = branch -d
+
+	# branch delete force
+	bD = branch -D
 
 	### commit ###
 
@@ -279,6 +285,20 @@
 
 	# status with short format and showing branch and tracking info.
 	ssb = status --short --branch
+
+	### worktree ###
+
+	# worktree add
+	wa = worktree add
+
+	# worktree list
+	wl = worktree list
+
+	# worktree remove
+	wr = worktree remove
+
+	# worktree branch: create a new worktree at ../<repo>-<branch> with a new branch
+	wb = "!f() { r=$(git rev-parse --show-toplevel); git worktree add -b $1 $r/../$(basename $r)-$1 main && cd $r/../$(basename $r)-$1; }; f"
 
 	### ALIAS MANAGEMENT ###
 
@@ -895,6 +915,18 @@
 [fetch]
 
 	prune = true
+
+[commit]
+
+	gpgsign = true
+
+[tag]
+
+	gpgsign = true
+
+[gpg]
+
+	format = ssh
 
 # URL shorthands
 
