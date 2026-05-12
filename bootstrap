@@ -61,14 +61,12 @@ init() {
 
   source "$HOME/.zshrc"
 
-  if type tmux >/dev/null 2>/dev/null; then
+  if type tmux >/dev/null 2>/dev/null && tmux has-session 2>/dev/null; then
     tmux source-file "$HOME/.tmux.conf"
   fi
 }
 
 if [[ "${1:-}" == "--force" || "${1:-}" == "-f" ]]; then
-  init
-elif [[ -n "${SPIN:-}" ]]; then
   init
 else
   # read returns 1 on EOF (no TTY / piped stdin); avoid exiting under set -e

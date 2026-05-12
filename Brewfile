@@ -10,6 +10,7 @@ brew "fzf"
 brew "git-delta"
 brew "zoxide"
 brew "llm"
+brew "duti"
 
 # GUI apps
 cask "rectangle"

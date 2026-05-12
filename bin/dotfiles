@@ -8,10 +8,13 @@ SETUP_FILE="$DOTFILES_PATH/commands/$1.sh"
 
 if [ $# -eq 0 ]
 then
-  source "$DOTFILES_PATH/bootstrap"
+  zsh "$DOTFILES_PATH/bootstrap"
+elif [ "$1" = "reload" ] && [ -f "$SETUP_FILE" ]
+then
+  source "$SETUP_FILE"
 elif [ -f "$SETUP_FILE" ]
 then
-  source $SETUP_FILE
+  zsh "$SETUP_FILE"
 else
   echo "Command doesn't exist"
 fi

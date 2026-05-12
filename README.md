@@ -38,6 +38,10 @@ Re-sources all dotfiles in the current shell, picking up any changes without rep
 
 Configures macOS system defaults (Finder, Dock, keyboard, trackpad, etc.).
 
+### `dotfiles default-apps`
+
+Configures macOS default app associations from `~/.duti` using `duti`. Run `dotfiles brew` first to install `duti`, and run `dotfiles` first so `.duti` is symlinked into your home directory.
+
 ## File Structure
 
 | File | Purpose |
@@ -51,6 +55,7 @@ Configures macOS system defaults (Finder, Dock, keyboard, trackpad, etc.).
 | `.prompt` | Custom Zsh prompt with git status |
 | `.gitconfig` | Git config with extensive aliases |
 | `.editorconfig` | Editor formatting defaults |
+| `.duti` | Default app associations applied by `bin/dotfiles default-apps` |
 | `.tmux.conf` | Tmux configuration |
 | `Brewfile` | Declarative Homebrew package list |
 | `config/` | App configs symlinked by `bin/dotfiles symlinks` |

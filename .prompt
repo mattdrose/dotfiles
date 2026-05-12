@@ -53,10 +53,7 @@ directory_name() {
 }
 
 icon() {
-  if [ $SPIN ]
-  then
-    echo "꩜";
-  elif [ "${SSH_TTY}" ]
+  if [ -n "${SSH_TTY:-}" ]
   then
 	  echo "☁️ ";
   else
@@ -72,12 +69,7 @@ user() {
   	user_color="$fg_bold[blue]";
   fi
 
-  if [ $SPIN ]
-  then
-    user_display=$(hostname -A | xargs)
-  else
-    user_display="%n"
-  fi
+  user_display="%n"
   echo "%{$user_color%}$user_display%{$reset_color%}";
 }
 
