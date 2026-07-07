@@ -23,6 +23,9 @@ export BUN_INSTALL="$HOME/.bun"
 [ -d "$BUN_INSTALL" ] && export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
 
+# Go
+[ -d "$HOME/go/bin" ] && export PATH="$HOME/go/bin:$PATH"
+
 # Android SDK
 if [ -d "$HOME/Library/Android/sdk" ]; then
   export ANDROID_HOME="$HOME/Library/Android/sdk"

@@ -47,5 +47,7 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "liveshare.authenticationProvider": "GitHub",
   "window.zoomLevel": 1,
-  "editor.inlineSuggest.enabled": true
+  "editor.inlineSuggest.enabled": true,
+  "workbench.colorTheme": "Dark Modern",
+  "editor.formatOnSave": true
 }

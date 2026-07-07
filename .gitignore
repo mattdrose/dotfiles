@@ -15,3 +15,4 @@ Thumbs.db
 
 # Extra
 .extra
+.pi/agent/trust.json

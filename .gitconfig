@@ -912,6 +912,10 @@
 
 	rebase = true
 
+[git-town]
+
+	sync-feature-strategy = rebase
+
 [fetch]
 
 	prune = true

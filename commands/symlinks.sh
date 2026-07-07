@@ -45,6 +45,14 @@ mkdir -p "$llm_dir"
 symlink "$DOTFILES/config/extra-openai-models.yaml" "$llm_dir/extra-openai-models.yaml"
 unset llm_dir
 
+# Agents
+cursor_rules_dir="$HOME/.cursor/rules"
+pi_agent_dir="$HOME/.pi/agent"
+mkdir -p "$cursor_rules_dir" "$pi_agent_dir"
+symlink "$DOTFILES/agents/AGENTS.md" "$cursor_rules_dir/AGENTS.mdc"
+symlink "$DOTFILES/agents/AGENTS.md" "$pi_agent_dir/AGENTS.md"
+unset cursor_rules_dir pi_agent_dir
+
 # Kill apps
 for app in "Visual Studio Code" "Karabiner-Elements"; do
 	killall "${app}" &> /dev/null || true
